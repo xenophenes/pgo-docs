@@ -7,8 +7,6 @@ draft: true
 = Upgrade Notes for Migrating to Release 2.6
 v2.6, {docdate}
 
-image::crunchy_logo.png?raw=true[]
-
 == pgo.yaml
 
 2.6 changed the pgo.yaml file to remove Debug flag

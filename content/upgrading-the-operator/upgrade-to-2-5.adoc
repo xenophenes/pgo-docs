@@ -7,8 +7,6 @@ draft: true
 = Upgrade Notes for Migrating to Release 2.5
 v2.5, {docdate}
 
-image::crunchy_logo.png?raw=true[]
-
 == pgo.yaml
 
 2.5 changed the pgo.yaml file in terms of storage configuration
