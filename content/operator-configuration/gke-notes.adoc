@@ -4,7 +4,6 @@ date: 2018-04-23T14:50:56-07:00
 draft: true
 ---
 
-= GKE Notes
 :toc:
 v2.6, {docdate}
 

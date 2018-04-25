@@ -2,5 +2,4 @@
 title: "Upgrading the Operator"
 date: 2018-04-23T14:51:30-07:00
 draft: true
-weight: 3
 ---

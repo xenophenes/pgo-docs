@@ -4,7 +4,6 @@ date: 2018-04-23T14:51:20-07:00
 draft: true
 ---
 
-= PostgreSQL Operator Configuration
 :toc:
 v2.6, {docdate}
 

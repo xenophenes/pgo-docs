@@ -2,5 +2,4 @@
 title: "Operator Configuration"
 date: 2018-04-23T14:51:25-07:00
 draft: true
-weight: 1
 ---

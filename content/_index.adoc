@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Crunchy Data PostgreSQL Operator"
 date: 2018-04-23T14:52:09-07:00
 draft: true
 ---
@@ -36,10 +36,10 @@ More design information is found on the link:docs/design.asciidoc[Design] page.
 
 == Requirements
 
-The *postgres-operator* runs on Kubernetes and Openshift platforms that support 
+The *postgres-operator* runs on Kubernetes and Openshift platforms that support
 CRD (custom resource definitions).
 
-== Quickstart 
+== Quickstart
 
 Quickstart scripts are provided for GKE and Openshift currently.  More information is found on the link:docs/quickstarts.asciidoc[Quickstarts] page.
 
@@ -58,4 +58,3 @@ The operator is template-driven; this makes it simple to configure both the clie
 == Building From Source
 
 For people wanting to build from source, instructions are documented on the link:docs/build.asciidoc[Build] page.
-

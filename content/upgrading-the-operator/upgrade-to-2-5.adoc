@@ -1,40 +1,44 @@
 ---
-title: "Upgrade to 2 5"
+title: "Upgrading to v2.5"
 date: 2018-04-23T14:50:40-07:00
 draft: true
 ---
 
-= Upgrade Notes for Migrating to Release 2.5
-v2.5, {docdate}
+v2.6, {docdate}
 
-== pgo.yaml
+For a full list of additions and revisions that occurred in the
+PostgreSQL Operator v2.5 release, please view the related release
+page link:https://github.com/CrunchyData/postgres-operator/releases/tag/2.5[here].
 
-2.5 changed the pgo.yaml file in terms of storage configuration
+== Required Updates
 
-=== Required Changes
+This section notes some required steps that will need to be taken
+in the process of upgrading from v2.4 to v2.5.
 
-You will need to change your pgo.yaml file to look like:
+=== Configuration File
+
+It will be necessary to update your existing pgo.yaml configuration
+file where the Storage Configuration sections are concerned. The updated
+file for v2.5 can be found
+link:https://github.com/CrunchyData/postgres-operator/blob/2.5/conf/apiserver/pgo.yaml[here].
+The file contained within the local installation of the Operator is located
+by default in the following location -
 ....
 $COROOT/conf/apiserver/pgo.yaml
 ....
 
-in terms of the Storage Configuration sections.
-
-== Database Credentials Secrets
+=== Secrets
 
 2.5 changed the names of the database credentials that are created
-by default to get in sync with the way new database credentials
-were named.
+by default in order to be consistent with the way new database credentials
+are named.
 
-=== Required Changes
+It will be necessary to run the following script to update your
+existing clusters. This script will essentially copy the existing
+secrets values and create new secrets with those same values but
+named to the new standard. Run the script by passing in the name of
+an existing cluster as a parameter.
 
-There is a utility in :
 ....
 $COROOT/bin/upgrade-secret.sh
 ....
-
-that you will need to run on your existing clusters.  This script
-will essentially copy the existing secrets values and create
-new secrets with those same values but named to the new standard.
-
-Run the script by passing in the name of a cluster as a parameter.

@@ -1,31 +1,33 @@
 ---
-title: "Upgrade to 2 6"
+title: "Upgrading to v2.6"
 date: 2018-04-23T14:50:43-07:00
 draft: true
 ---
 
-= Upgrade Notes for Migrating to Release 2.6
 v2.6, {docdate}
 
-== pgo.yaml
+For a full list of additions and revisions that occurred in the
+PostgreSQL Operator v2.5 release, please view the related release
+page link:https://github.com/CrunchyData/postgres-operator/releases/tag/2.6[here].
 
-2.6 changed the pgo.yaml file to remove Debug flag
+== Required Updates
 
-=== Required Changes
+This section notes some required steps that will need to be taken
+in the process of upgrading from v2.5 to v2.6.
 
-You can remove Pgo.Debug from the pgo.yaml file, the debug flag is
-now called CRUNCHY_DEBUG and is set in the deployment.json file as
-an environment variable.
+=== Configuration File
 
-== Container Resources
+One update in v2.6 changed the pgo.yaml file through removing the Debug flag.
+The pgo.debug variable can now be removed from the pgo.yaml file as a
+result. The debug flag is now called CRUNCHY_DEBUG and is set in the
+deployment.json file as a default environment variable.
+
+=== Container Resources
 
 Release 2.6 added the concept of container resource configurations
-to the *pgo.yaml* file.
-
-=== Required Changes
-
-If you want to specify container resource configurations, which are
-optional, you can add a section as follows to your *pgo.yaml* file:
+to the pgo.yaml file. In order to specify the optional container
+resource configurations, add a section as follows to your pgo.yaml
+file -
 ....
 DefaultContainerResource: small
 ContainerResources:
@@ -41,76 +43,69 @@ ContainerResources:
    LimitsCPU:  4.0
 ....
 
-Be careful with these settings, you can cause your deployments to
-go into a *pending* state if your Kube cluster can not meet these
-memory and CPU requirements!
+WARNING: If these settings are set incorrectly or if the Kubernetes cluster
+cannot meet the defined memory and CPU requirements, deployments will go into
+a *pending* state.
 
-== Kube RBAC
+=== Kube RBAC
 
-Release 2.6 added a *rbac.yaml* file to capture the Kube RBAC
-rules applied to enable the *apiserver* and *postgres-operator*
-containers access to the Kube resources required for
-the operator to work.
+Release 2.6 added a rbac.yaml file to capture the Kube RBAC
+rules. These RBAC rules allow the *apiserver* and *postgres-operator*
+containers access to the Kubernetes resources required for
+the operator to work. As part of the deployment process, it is necessary to
+execute the rbac.yaml file to set the roles and bindings required by the
+operator. Adjust this file to suit local security requirements.
 
-=== Required Changes
+=== Application RBAC
 
-As part of your deployment process, you will execute
-the *rbac.yaml* file to set the roles and bindings required
-by the operator.  Adjust these to suit your local security
-requirements.
-
-== Application RBAC
-
-Release 2.6 added an RBAC capability to secure the *pgo*
-application.
-
-=== Required Changes
-
-The *pgouser* now has a role appended at the end of
-of each user definition as follows:
+Release 2.6 added an RBAC capability to secure the *pgo* application.
+The *pgouser* now has a role appended at the end of of each user definition
+as follows -
 ....
 username:password:pgoadmin
 testuser:testpass:pgoadmin
 readonlyuser:testpass:pgoreader
 ....
 
+These are defined in the following file -
+....
+$COROOT/conf/apiserver/pgouser
+....
+
 To match the behavior of the pre 2.6 releases, the *pgadmin* role
 is set on the previous user definitions, but a *readonlyuser* is
-now defined to test other role definitions.
-
-You will want to adjust these default settings to meet your
-local security requirements.
-
-The roles are defined in a new file called *pgorole*.  This
-file defines each role and the permissions for that role.  By
-default, two roles are defined as samples:
+now defined to test other role definitions. The roles are defined in
+a new file called *pgorole*. This file defines each role and the
+permissions for that role. By default, two roles are defined as samples -
 ....
 pgoadmin
 pgoreader
 ....
 
-You can adjust these to meet your local security requirements.  The
-format of this file is as follows:
+Adjust these default settings to meet local security requirements.
+
+The format of this file is as follows -
 ....
 rolename: permissionA, permissionB
 ....
 
-The complete set of permissions is documented in the Operator Documentation.
+These are defined in the following file -
+....
+$COROOT/conf/apiserver/pgorole
+....
 
+The complete set of permissions is documented in the link:/operator-configuration/configuration/[configuration document].
 
-== pgo create user
+=== User Creation
 
-Release 2.6 added the *pgo create user* command to be more like
-the other pgo commands.  The previous form of this command *pgo user --add*
-has been removed.
+Release 2.6 replaced the pgo user --add command with the pgo create user
+command to improve consistency across command usage. Any scripts written
+using the older style of command require an update to use the new command
+syntax.
 
-Any scripts you wrote using the older style of command would need
-to be updated to use the new command syntax.
+=== Replica CRD
 
-
-== pgreplica CRD
-
-There is a new CRD to hold replica information, pgreplicas.  This
-CRD is populated with the *pgo scale* command.  The pgreplica
-is used to hold per-replica specific information such as the
-resource and storage configurations requested at run time.
+There is a new Kubernetes Custom Resource Definition that serves the purpose
+of holding replica information, called *pgreplicas*. This CRD is populated
+with the pgo scale command and is used to hold per-replica specific information
+such as the resource and storage configurations requested at run time.
