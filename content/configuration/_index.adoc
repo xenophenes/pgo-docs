@@ -1,6 +1,6 @@
 ---
 title: "Configuration"
-date: 2018-04-23T14:51:20-07:00
+date: 2018-04-24T18:26:56-07:00
 draft: true
 ---
 
@@ -364,7 +364,7 @@ A simple mechanism for partial disaster recovery can be obtained by leveraging n
 
 For example, if you define a Kubernetes storage class that refers to a storage backend that is running within your disaster recovery site, and then use that storage class as a storage configuration for your backups, you essentially have moved your backup files automatically to your DR site thanks to network storage.
 
-image::Operator-DR-Storage.png?raw=true[]
+image::/Operator-DR-Storage.png[Operator Storage]
 
 === *postgres-operator* Container Configuration
 

@@ -1,6 +1,6 @@
 ---
-title: "Design"
-date: 2018-04-23T14:51:15-07:00
+title: "How it Works"
+date: 2018-04-24T18:27:42-07:00
 draft: true
 ---
 
@@ -12,7 +12,7 @@ v2.6, {docdate}
 So, what does the Postgres Operator actually deploy
 when you create a cluster?
 
-image::OperatorReferenceDiagram.png?raw=true[]
+image::/OperatorReferenceDiagram.png[Operator Reference Diagram]
 
 On this diagram, objects with dashed lines are things
 that are optionally deployed as part of a Postgres Cluster
