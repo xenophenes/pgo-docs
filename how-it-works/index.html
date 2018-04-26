@@ -278,7 +278,7 @@ configurations which is quite powerful.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kubernetes Custom Resource Definitions are used in the design
-of the PostgreSQL Operator to define the following.</p>
+of the PostgreSQL Operator to define the following -</p>
 </div>
 <div class="ulist">
 <ul>
@@ -298,9 +298,6 @@ of the PostgreSQL Operator to define the following.</p>
 <p>Tasks - <strong>pgtasks</strong></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>A PostgreSQL cluster is made up of multiple deployments and services.</p>
 </div>
 </div>
 </div>
@@ -406,7 +403,7 @@ go ahead and schedule the Pod on another node.</p>
 </div>
 <div class="paragraph">
 <p>You can always view the actual node your cluster pod is scheduled
-on by:</p>
+on through the following command.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -439,16 +436,23 @@ node.</p>
 <div class="paragraph">
 <p>To verify the operator is running and has deployed the Custom Resources execute the following -</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">kubectl get crd
-NAME                               KIND
+<pre>kubectl get crd</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The full list of CRDs that are created over time are shown below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>NAME                               KIND
 pgbackups.cr.client-go.k8s.io      CustomResourceDefinition.v1beta1.apiextensions.k8s.io
 pgclusters.cr.client-go.k8s.io     CustomResourceDefinition.v1beta1.apiextensions.k8s.io
 pgpolicies.cr.client-go.k8s.io     CustomResourceDefinition.v1beta1.apiextensions.k8s.io
 pgpolicylogs.cr.client-go.k8s.io   CustomResourceDefinition.v1beta1.apiextensions.k8s.io
 pgupgrades.cr.client-go.k8s.io     CustomResourceDefinition.v1beta1.apiextensions.k8s.io
-pgtasks.cr.client-go.k8s.io        CustomResourceDefinition.v1beta1.apiextensions.k8s.io</code></pre>
+pgtasks.cr.client-go.k8s.io        CustomResourceDefinition.v1beta1.apiextensions.k8s.io</pre>
 </div>
 </div>
 </div>
