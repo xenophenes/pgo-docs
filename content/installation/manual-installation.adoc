@@ -155,6 +155,8 @@ cd $COROOT
 make deployoperator
 ....
 
+{{% /expand%}}
+
 == Makefile Targets
 
 The following table describes the Makefile targets:
