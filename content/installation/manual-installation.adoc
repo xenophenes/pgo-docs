@@ -159,7 +159,8 @@ make deployoperator
 
 == Makefile Targets
 
-The following table describes the Makefile targets:
+The following table describes the Makefile targets -
+  
 .Makefile Targets
 [width="80%",frame="topbot",options="header"]
 |======================
