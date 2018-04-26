@@ -1,7 +1,7 @@
 ---
 title: "Crunchy Data PostgreSQL Operator"
 date: 2018-04-23T14:52:09-07:00
-draft: true
+draft: false
 ---
 
 image::crunchy_logo.png[Crunchy Data Logo,width="40%",height="40%", align="center"]
