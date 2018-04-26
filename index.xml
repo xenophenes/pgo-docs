@@ -31,7 +31,7 @@
       <pubDate>Thu, 26 Apr 2018 15:22:21 -0700</pubDate>
       
       <guid>https://xenophenes.github.io/pgo-docs/installation/manual-installation/</guid>
-      <description>Table of Contents Project Structure Installation Prerequsites Basic Installation Create HostPath Directory   Build Images &amp;amp; Deploy   v2.6, 2018-04-26
+      <description>Table of Contents Project Structure Installation Prerequsites Basic Installation Create HostPath Directory   Build Images &amp;amp; Deploy Makefile Targets Next Steps   v2.6, 2018-04-26
  Project Structure To perform an installation of the operator, first create the project structure as follows on your host, here we assume a local directory called odev -
  export GOPATH=$HOME/odev mkdir -p $HOME/odev/src $HOME/odev/bin $HOME/odev/pkg mkdir -p $GOPATH/src/github.com/crunchydata/   Next, get a tagged release of the source code -</description>
     </item>
