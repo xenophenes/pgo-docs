@@ -7,6 +7,8 @@ theme = "docdock-pgo"
 themesdir = "themes/"
 pygmentsCodeFences = true
 pygmentsStyle = "monokailight"
+publishdir = "public"
+canonifyurls = true
 
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir= false
