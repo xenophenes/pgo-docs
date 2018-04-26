@@ -56,7 +56,7 @@ A similar script for installing the operator on OCP is
 offered with similar features as the GKE script.  This script is
 tested on OCP 3.7 with a StorageClass defined.
 
-=== Next Steps
+== Next Steps
 
 Next, visit the link:/installation/deployment/[Deployment] page to deploy the
 Operator, verify the installation, and view various storage configurations.

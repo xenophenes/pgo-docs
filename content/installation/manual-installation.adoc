@@ -179,7 +179,7 @@ The following table describes the Makefile targets:
 |release        | build the postgres-operator release
 |======================
 
-=== Next Steps
+== Next Steps
 
 Next, visit the link:/installation/deployment/[Deployment] page to deploy the
 Operator, verify the installation, and view various storage configurations.
