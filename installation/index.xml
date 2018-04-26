@@ -17,7 +17,7 @@
       <pubDate>Thu, 26 Apr 2018 15:22:14 -0700</pubDate>
       
       <guid>https://xenophenes.github.io/pgo-docs/installation/quick-installation/</guid>
-      <description>Table of Contents Overview Quickstart GKE/PKS Openshift Container Platform Next Steps     v2.6, 2018-04-26
+      <description>Table of Contents Overview Quickstart GKE/PKS Openshift Container Platform   Next Steps   v2.6, 2018-04-26
  Overview There are currently quickstart scripts that seek to automate the deployment to popular Kubernetes environments -
    quickstart-for-gke.sh
   quickstart-for-ocp.sh
