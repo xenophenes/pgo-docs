@@ -3,12 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/categories/</loc>
-    <priority>0</priority>
+    <loc>https://xenophenes.github.io/pgo-docs/how-it-works/</loc>
+    <lastmod>2018-04-24T18:27:42-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xenophenes.github.io/pgo-docs/upgrading-the-operator/</loc>
+    <lastmod>2018-04-24T18:27:30-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xenophenes.github.io/pgo-docs/installation/</loc>
+    <lastmod>2018-04-24T18:27:02-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xenophenes.github.io/pgo-docs/configuration/</loc>
+    <lastmod>2018-04-24T18:26:56-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xenophenes.github.io/pgo-docs/getting-started/</loc>
+    <lastmod>2018-04-24T18:26:43-07:00</lastmod>
   </url>
   
   <url>
     <loc>https://xenophenes.github.io/pgo-docs/</loc>
+    <lastmod>2018-04-23T14:52:09-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://xenophenes.github.io/pgo-docs/categories/</loc>
     <priority>0</priority>
   </url>
   
