@@ -56,13 +56,11 @@ This Operator is developed and tested on the following operating systems but is 
 
 To build and deploy the Operator on your Kubernetes system, follow the instructions documented on the link:/installation/[Installation] page.
 
-Quickstart scripts are currently provided for GKE and OpenShift environments that can also be found on the link:/installation/Installation] page.
-
-If you're seeking to upgrade your existing Operator installation, please visit the link:/upgrading-the-operator/[Upgrading the Operator] page.
+If you're seeking to upgrade your existing Operator installation, please visit the link:/installation/upgrading-the-operator/[Upgrading the Operator] page.
 
 == Configuration
 
-The operator is template-driven; this makes it simple to configure both the client and the operator. The configuration options are documented on the link:/configuration/[Configuration] page.
+The operator is template-driven; this makes it simple to configure both the client and the operator. The configuration options are documented on the link:/installation/configuration/[Configuration] page.
 
 == Getting Started
 

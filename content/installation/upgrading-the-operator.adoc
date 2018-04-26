@@ -2,6 +2,7 @@
 title: "Upgrading the Operator"
 date: 2018-04-24T18:27:30-07:00
 draft: false
+weight: 40
 ---
 
 v2.6, {docdate}
@@ -139,7 +140,7 @@ These are defined in the following file -
 $COROOT/conf/apiserver/pgorole
 ....
 
-The complete set of permissions is documented in the link:/configuration/[Configuration] document.
+The complete set of permissions is documented in the link:/installation/configuration/[Configuration] document.
 
 === User Creation
 

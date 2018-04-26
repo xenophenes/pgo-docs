@@ -1,4 +1,5 @@
-baseURL = "https://xenophenes.github.io/pgo-docs/"
+#baseURL = "https://xenophenes.github.io/pgo-docs/"
+baseURL= "/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
@@ -28,7 +29,7 @@ editURL = "https://github.com/crunchydata/postgres-operator"
 showVisitedLinks = false # default is false
 themeStyle = "original" # "original" or "flex" # default "flex"
 themeVariant = "" # choose theme variant "green", "gold" , "gray", "blue" (default)
-ordersectionsby = "title" # ordersectionsby = "title"
+ordersectionsby = "weight" # ordersectionsby = "title"
 disableHomeIcon = true # default is false
 disableSearch = false # default is false
 disableNavChevron = false # set true to hide next/prev chevron, default is false
