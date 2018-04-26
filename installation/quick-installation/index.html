@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.40" />
 
-<title>Installation :: Crunchy Data PostgreSQL Operator Documentation</title>
+<title>Quick Installation :: Crunchy Data PostgreSQL Operator Documentation</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/nucleus.css" rel="stylesheet">
 <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     
   </head>
-  <body data-url="/installation/">
+  <body data-url="/installation/quick-installation/">
     
       <div id="headermain"></div>
 <nav id="sidebar" class="">
@@ -61,7 +61,7 @@
   </div>
 
       <ul class="topics">
-    <li data-nav-id="/installation/" class="dd-item parent active haschildren
+    <li data-nav-id="/installation/" class="dd-item parent haschildren
         ">
       <div>
       <a href="/installation/">Installation</a>
@@ -69,7 +69,7 @@
 
       </div>
         <ul>
-      <li data-nav-id="/installation/quick-installation/" class="dd-item">
+      <li data-nav-id="/installation/quick-installation/" class="dd-item active">
         <div>
           <a href="/installation/quick-installation/">
             Quick Installation
@@ -158,7 +158,7 @@
       
       
     <div id="top-github-link">
-      <a class="github-link" href="https://github.com/crunchydata/postgres-operatorinstallation/_index.adoc" target="blank">
+      <a class="github-link" href="https://github.com/crunchydata/postgres-operatorinstallation/quick-installation.adoc" target="blank">
         <i class="fa fa-code-fork"></i>
         Improve this page
       </a>
@@ -175,7 +175,12 @@
 
 
 
- <a href='/'>Crunchy Data PostgreSQL Operator</a> > Installation
+
+
+
+ <a href='/'>Crunchy Data PostgreSQL Operator</a> > <a href='/installation/'>Installation</a> > Quick Installation
+
+
 
 
 
@@ -196,7 +201,7 @@
 
 <div id="body-inner">
   
-    <h1>Installation</h1>
+    <h1>Quick Installation</h1>
   
 
 
@@ -204,54 +209,125 @@
     
     
     
-
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_overview">Overview</a></li>
+<li><a href="#_quickstart">Quickstart</a>
+<ul class="sectlevel2">
+<li><a href="#_gke_pks">GKE/PKS</a></li>
+<li><a href="#_openshift_container_platform">Openshift Container Platform</a></li>
+<li><a href="#_next_steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>v2.6, 2018-04-26</p>
 </div>
 <div class="sect1">
-<h2 id="_installation">Installation</h2>
+<h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For a quick deployment on either a GKE or OpenShift environment, visit the
-<a href="/installation/quick-installation/">Quick Installation</a> page.</p>
+<p>There are currently <strong>quickstart</strong> scripts that seek to automate
+the deployment to popular Kubernetes environments -</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/CrunchyData/postgres-operator/blob/master/examples/quickstart-for-gke.sh">quickstart-for-gke.sh</a></p>
+</li>
+<li>
+<p><a href="https://github.com/CrunchyData/postgres-operator/blob/master/examples/quickstart-for-ocp.sh">quickstart-for-ocp.sh</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>For a manual installation of the Operator on either a Kubernetes or OpenShift
-environment, visit the <a href="/installation/manual-installation/">Manual Installation</a>
-page.</p>
+<p>The <strong>quickstart-for-gke</strong> script will deploy the operator to
+a GKE Kube cluster.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="/installation/helm-chart/">Helm Chart</a> is also provided.</p>
+<p>The <strong>quickstart-for-ocp</strong> script will deploy the operator to
+an Openshift Container Platform cluster.</p>
 </div>
 <div class="paragraph">
-<p>If you&#8217;re looking to upgrade a current PostgreSQL Operator installation, visit the
-<a href="/installation/upgrading-the-operator/">Upgrading the Operator</a> page.</p>
+<p>Both scripts assume you have a StorageClass defined for persistence.</p>
 </div>
 <div class="paragraph">
-<p>After completing the installation steps, ensure you visit the
-<a href="/installation/deployment/">Deployment</a> page to deploy the Operator to your
-environment.</p>
+<p>Pre-compiled versions of the Operator <strong>pgo</strong> client are provided for the x86_64, Mac OSX, and Windows hosts.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_next_steps">Next Steps</h2>
+<h2 id="_quickstart">Quickstart</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_gke_pks">GKE/PKS</h3>
 <div class="paragraph">
-<p>There are many ways to configure the operator further. Some sample configurations are
-documented on the <a href="/installation/configuration/">Configuration</a> page.</p>
-</div>
-<div class="paragraph">
-<p>You may also want to find out more information on how the operator is designed to work and
-deploy. This information can be found in the <a href="/how-it-works/">How It Works</a> page.</p>
+<p>The <strong>quickstart-for-gke.sh</strong> script will allow users to set up the Postgres Operator quickly on GKE including PKS.
+This script is tested on GKE but can be modified for use with other Kubernetes environments as well.</p>
 </div>
 <div class="paragraph">
-<p>Information can be found on the full scope of commands on the
-<a href="/getting-started/">Getting Started</a> page.</p>
+<p>The script requires a few things in order to work -</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>wget utility installed</p>
+</li>
+<li>
+<p>kubectl utility installed</p>
+</li>
+<li>
+<p>StorageClass defined</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Executing the script will give you a default Operator deployment
+that assumes <strong>dynamic</strong> storage and a storage class named <strong>standard</strong>,
+things that GKE provides.</p>
+</div>
+<div class="paragraph">
+<p>The script performs the following -</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>downloads the Operator configuration files</p>
+</li>
+<li>
+<p>sets the $HOME/.pgouser file to default settings</p>
+</li>
+<li>
+<p>deploys the Operator Deployment</p>
+</li>
+<li>
+<p>sets your .bashrc to include the Operator environment variables</p>
+</li>
+<li>
+<p>sets your $HOME/.bash_completion file to be the <strong>pgo</strong> bash_completion file</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openshift_container_platform">Openshift Container Platform</h3>
+<div class="paragraph">
+<p>A similar script for installing the operator on OCP is
+offered with similar features as the GKE script.  This script is
+tested on OCP 3.7 with a StorageClass defined.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_next_steps">Next Steps</h3>
+<div class="paragraph">
+<p>Next, visit the <a href="/installation/deployment/">Deployment</a> page to deploy the
+Operator, verify the installation, and view various storage configurations.</p>
 </div>
 </div>
 </div>
-
+</div>
 
 
     
@@ -263,8 +339,8 @@ deploy. This information can be found in the <a href="/how-it-works/">How It Wor
 </div>
 
 <div id="navigation">
-<a class="nav nav-prev" href="/" title="Crunchy Data PostgreSQL Operator"> <i class="fa fa-chevron-left"></i><label>Crunchy Data PostgreSQL Operator</label></a>
-    <a class="nav nav-next" href="/installation/quick-installation/" title="Quick Installation" style="margin-right: 0px;"><label>Quick Installation</label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/installation/" title="Installation"> <i class="fa fa-chevron-left"></i><label>Installation</label></a>
+    <a class="nav nav-next" href="/installation/manual-installation/" title="Manual Installation" style="margin-right: 0px;"><label>Manual Installation</label><i class="fa fa-chevron-right"></i></a></div>
 
 </section>
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">

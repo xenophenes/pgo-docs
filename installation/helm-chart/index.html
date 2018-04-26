@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.40" />
 
-<title>Installation :: Crunchy Data PostgreSQL Operator Documentation</title>
+<title>Helm Chart :: Crunchy Data PostgreSQL Operator Documentation</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/nucleus.css" rel="stylesheet">
 <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     
   </head>
-  <body data-url="/installation/">
+  <body data-url="/installation/helm-chart/">
     
       <div id="headermain"></div>
 <nav id="sidebar" class="">
@@ -61,7 +61,7 @@
   </div>
 
       <ul class="topics">
-    <li data-nav-id="/installation/" class="dd-item parent active haschildren
+    <li data-nav-id="/installation/" class="dd-item parent haschildren
         ">
       <div>
       <a href="/installation/">Installation</a>
@@ -83,7 +83,7 @@
           </a>
         </div>
     </li>
-      <li data-nav-id="/installation/helm-chart/" class="dd-item">
+      <li data-nav-id="/installation/helm-chart/" class="dd-item active">
         <div>
           <a href="/installation/helm-chart/">
             Helm Chart
@@ -158,7 +158,7 @@
       
       
     <div id="top-github-link">
-      <a class="github-link" href="https://github.com/crunchydata/postgres-operatorinstallation/_index.adoc" target="blank">
+      <a class="github-link" href="https://github.com/crunchydata/postgres-operatorinstallation/helm-chart.adoc" target="blank">
         <i class="fa fa-code-fork"></i>
         Improve this page
       </a>
@@ -175,7 +175,12 @@
 
 
 
- <a href='/'>Crunchy Data PostgreSQL Operator</a> > Installation
+
+
+
+ <a href='/'>Crunchy Data PostgreSQL Operator</a> > <a href='/installation/'>Installation</a> > Helm Chart
+
+
 
 
 
@@ -196,7 +201,7 @@
 
 <div id="body-inner">
   
-    <h1>Installation</h1>
+    <h1>Helm Chart</h1>
   
 
 
@@ -204,33 +209,32 @@
     
     
     
-
-<div class="paragraph">
+    <div class="paragraph">
 <p>v2.6, 2018-04-26</p>
 </div>
 <div class="sect1">
-<h2 id="_installation">Installation</h2>
+<h2 id="_helm_chart">Helm Chart</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For a quick deployment on either a GKE or OpenShift environment, visit the
-<a href="/installation/quick-installation/">Quick Installation</a> page.</p>
+<p>First, pull prebuilt versions from Dockerhub of the <strong>postgres-operator</strong> containers,
+specify the image versions, and execute the following Makefile target -</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>export CO_IMAGE_PREFIX=crunchydata
+export CO_IMAGE_TAG=centos7-2.6
+make pull</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>For a manual installation of the Operator on either a Kubernetes or OpenShift
-environment, visit the <a href="/installation/manual-installation/">Manual Installation</a>
-page.</p>
+<p>Then, build and deploy the operator using the provided Helm chart -</p>
 </div>
-<div class="paragraph">
-<p>A <a href="/installation/helm-chart/">Helm Chart</a> is also provided.</p>
+<div class="literalblock">
+<div class="content">
+<pre>cd $COROOT/chart
+helm install ./postgres-operator
+helm ls</pre>
 </div>
-<div class="paragraph">
-<p>If you&#8217;re looking to upgrade a current PostgreSQL Operator installation, visit the
-<a href="/installation/upgrading-the-operator/">Upgrading the Operator</a> page.</p>
-</div>
-<div class="paragraph">
-<p>After completing the installation steps, ensure you visit the
-<a href="/installation/deployment/">Deployment</a> page to deploy the Operator to your
-environment.</p>
 </div>
 </div>
 </div>
@@ -238,20 +242,11 @@ environment.</p>
 <h2 id="_next_steps">Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are many ways to configure the operator further. Some sample configurations are
-documented on the <a href="/installation/configuration/">Configuration</a> page.</p>
-</div>
-<div class="paragraph">
-<p>You may also want to find out more information on how the operator is designed to work and
-deploy. This information can be found in the <a href="/how-it-works/">How It Works</a> page.</p>
-</div>
-<div class="paragraph">
-<p>Information can be found on the full scope of commands on the
-<a href="/getting-started/">Getting Started</a> page.</p>
+<p>Next, visit the <a href="/installation/deployment/">Deployment</a> page to deploy the
+Operator, verify the installation, and view various storage configurations.</p>
 </div>
 </div>
 </div>
-
 
 
     
@@ -263,8 +258,8 @@ deploy. This information can be found in the <a href="/how-it-works/">How It Wor
 </div>
 
 <div id="navigation">
-<a class="nav nav-prev" href="/" title="Crunchy Data PostgreSQL Operator"> <i class="fa fa-chevron-left"></i><label>Crunchy Data PostgreSQL Operator</label></a>
-    <a class="nav nav-next" href="/installation/quick-installation/" title="Quick Installation" style="margin-right: 0px;"><label>Quick Installation</label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/installation/manual-installation/" title="Manual Installation"> <i class="fa fa-chevron-left"></i><label>Manual Installation</label></a>
+    <a class="nav nav-next" href="/installation/upgrading-the-operator/" title="Upgrading the Operator" style="margin-right: 0px;"><label>Upgrading the Operator</label><i class="fa fa-chevron-right"></i></a></div>
 
 </section>
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">

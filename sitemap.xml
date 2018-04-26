@@ -3,42 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/how-it-works/</loc>
-    <lastmod>2018-04-24T18:27:42-07:00</lastmod>
+    <loc>/installation/quick-installation/</loc>
+    <lastmod>2018-04-26T15:22:14-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/upgrading-the-operator/</loc>
+    <loc>/installation/manual-installation/</loc>
+    <lastmod>2018-04-26T15:22:21-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/installation/helm-chart/</loc>
+    <lastmod>2018-04-26T15:24:16-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/installation/upgrading-the-operator/</loc>
     <lastmod>2018-04-24T18:27:30-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/installation/</loc>
+    <loc>/installation/</loc>
     <lastmod>2018-04-24T18:27:02-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/configuration/</loc>
+    <loc>/installation/deployment/</loc>
+    <lastmod>2018-04-26T15:26:40-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/installation/configuration/</loc>
     <lastmod>2018-04-24T18:26:56-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/getting-started/</loc>
+    <loc>/how-it-works/</loc>
+    <lastmod>2018-04-24T18:27:42-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/</loc>
     <lastmod>2018-04-24T18:26:43-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/</loc>
+    <loc>/</loc>
     <lastmod>2018-04-23T14:52:09-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://xenophenes.github.io/pgo-docs/tags/</loc>
+    <loc>/tags/</loc>
     <priority>0</priority>
   </url>
   
