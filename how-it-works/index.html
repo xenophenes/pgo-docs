@@ -248,32 +248,27 @@ when you create a cluster?</p>
 </div>
 </div>
 <div class="paragraph">
-<p>On this diagram, objects with dashed lines are things
-that are optionally deployed as part of a Postgres Cluster
-by the Operator and objects with solid lines are
-the fundamental and required components.</p>
+<p>On this diagram, objects with dashed lines are components
+that are optionally deployed as part of a PostgreSQL Cluster
+by the operator. Objects with solid lines are the fundamental and
+required components.</p>
 </div>
 <div class="paragraph">
 <p>For example, within the Primary Deployment, the <strong>metrics</strong> container
-is completely optional, you can deploy that component using
-Operator configuration or command line arguments if you want
-to cause metrics to be collected from the Postgres container.</p>
+is completely optional. That component can be deployed using
+either the operator configuration or command line arguments if you
+want to cause metrics to be collected from the Postgres container.</p>
 </div>
 <div class="paragraph">
-<p>Replica deployments are just like the Primary deployment but
-are optional.  You do not have to create a Replica at all
-unless you need that capability.  As you scale up your Postgres
-cluster, the  standard set of components gets deployed and
-replication to the Primary is started.</p>
-</div>
-<div class="paragraph">
-<p>Lastly, in a future release, you will be able to optionally
-deploy a Pgpool service and Deployment that can act as a
-SQL <strong>router</strong> to your Postgres cluster.</p>
+<p>Replica deployments are similar to the primary deployment but
+are optional. A replica is not required to be created unless the
+capability for one is necessary. As you scale up the Postgres
+cluster, the standard set of components gets deployed and
+replication to the primary is started.</p>
 </div>
 <div class="paragraph">
 <p>Notice that each cluster deployment gets its own unique
-Persistent Volumes.  Each volume can use different storage
+Persistent Volumes. Each volume can use different storage
 configurations which is quite powerful.</p>
 </div>
 </div>
@@ -283,7 +278,7 @@ configurations which is quite powerful.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Kubernetes Custom Resource Definitions are used in the design
-of the postgres Operator to define:</p>
+of the PostgreSQL Operator to define the following.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -305,7 +300,7 @@ of the postgres Operator to define:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>A PostgreSQL Cluster is made up of multiple Deployments and Services.  Optionally you can add a metrics collection container to your database pods.</p>
+<p>A PostgreSQL cluster is made up of multiple deployments and services.</p>
 </div>
 </div>
 </div>
@@ -317,13 +312,14 @@ of the postgres Operator to define:</p>
 to create databases or clusters, or make changes to existing databases.</p>
 </div>
 <div class="paragraph">
-<p>The CLI interacts interacts with the <strong>apiserver</strong> REST API deployed
-within the <strong>postgres-operator</strong> Deployment.</p>
+<p>The CLI interacts with the <strong>apiserver</strong> REST API deployed
+within the <strong>postgres-operator</strong> deployment.</p>
 </div>
 <div class="paragraph">
 <p>From the CLI, users can view existing clusters that
-were deployed using the CLI and Operator.  Objects that were
-not created by the Crunchy Operator are now viewable from the CLI.</p>
+were deployed using the CLI and Operator. Objects that were
+not previously created by the Crunchy Operator are now viewable from
+the CLI.</p>
 </div>
 </div>
 </div>
@@ -331,9 +327,9 @@ not created by the Crunchy Operator are now viewable from the CLI.</p>
 <h2 id="_operator_deployment">Operator Deployment</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The postgres Operator runs within a Deployment in the Kubernetes
-cluster.  An administrator will deploy the postgres Operator Deployment
-using the provided script.  Once installed and running, the Operator
+<p>The PostgreSQL Operator runs within a Deployment in the Kubernetes
+cluster.  An administrator will deploy the operator deployment
+using the provided script. Once installed and running, the Operator
 pod will start watching for certain defined events.</p>
 </div>
 <div class="paragraph">
@@ -364,7 +360,7 @@ convenience of deployment and updates.</p>
 <h3 id="_verbs">Verbs</h3>
 <div class="paragraph">
 <p>A user works with the CLI by entering verbs to indicate
-what they want to do, as follows:</p>
+what they want to do, as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -374,7 +370,7 @@ pgo create cluster mycluster</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the above example, the <strong>show</strong>, <strong>backup</strong>, <strong>delete</strong>, and <strong>create</strong> verbs are used.  The CLI is case sensitive and supports only lowercase.</p>
+<p>In the above example, the <strong>show</strong>, <strong>backup</strong>, <strong>delete</strong>, and <strong>create</strong> verbs are used. The CLI is case sensitive and supports only lowercase.</p>
 </div>
 </div>
 </div>
@@ -384,11 +380,11 @@ pgo create cluster mycluster</code></pre>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can have the Operator add an affinity section to
-a new Cluster Deployment if you want to cause Kube to
-attempt to schedule a Primary cluster to a specific Kube node.</p>
+a new Cluster Deployment if you want to cause Kubernetes to
+attempt to schedule a primary cluster to a specific Kubernetes node.</p>
 </div>
 <div class="paragraph">
-<p>You can see the nodes on your Kube cluster by:</p>
+<p>You can see the nodes on your Kube cluster by running the following -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -396,7 +392,7 @@ attempt to schedule a Primary cluster to a specific Kube node.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>You can then specify one of those names (e.g. kubeadm-node2)  when creating a cluster:</p>
+<p>You can then specify one of those names (e.g. kubeadm-node2)  when creating a cluster -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -419,12 +415,13 @@ on by:</p>
 </div>
 <div class="paragraph">
 <p>When you scale up a Cluster and add a replica, the scaling will
-take into account the use of "--node-name".  If it sees that a
+take into account the use of <code>--node-name</code>.  If it sees that a
 cluster was created with a specific node name, then the replica
 Deployment will add an affinity rule to attempt to schedule
 the replica on a different node than the node the primary is
-schedule on.  This gets you a simple for of High Availability so
-that your primary and replicas will not live on the same Kube node.</p>
+schedule on. This provides a simple version of high availability and
+causes the primary and replicas to not live on the same Kubernetes
+node.</p>
 </div>
 </div>
 </div>
@@ -432,7 +429,7 @@ that your primary and replicas will not live on the same Kube node.</p>
 <h2 id="_debugging">Debugging</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To see if the operator pod is running enter the following:</p>
+<p>To see if the operator pod is running enter the following -</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -440,7 +437,7 @@ that your primary and replicas will not live on the same Kube node.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To verify the operator is running and has deployed the Custom Resources execute the following:</p>
+<p>To verify the operator is running and has deployed the Custom Resources execute the following -</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -460,15 +457,14 @@ pgtasks.cr.client-go.k8s.io        CustomResourceDefinition.v1beta1.apiextension
 <h2 id="_persistent_volumes">Persistent Volumes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Currently the operator does not delete persistent volumes by default, it will
-delete the claims on the volumes.  Starting with release 2.4, the Operator
+<p>Currently, the operator does not delete persistent volumes by default. Instead,
+it deletes the claims on the volumes. Starting with release 2.4, the Operator
 will create Jobs that actually run <strong>rm</strong> commands on the data volumes before
-actually removing the Persistent Volumes
-if the user passes a <strong>--delete-data</strong> flag when deleting a database
-cluster.</p>
+actually removing the Persistent Volumes if the user passes a `--delete-data `
+flag when deleting a database cluster.</p>
 </div>
 <div class="paragraph">
-<p>Likewise, if the user passes <strong>--delete-backups</strong> during cluster deletion
+<p>Likewise, if the user passes <code>--delete-backups</code> during cluster deletion
 a Job is created to remove all the backups for a cluster include
 the related Persistent Volume.</p>
 </div>
@@ -495,7 +491,7 @@ only a default <strong>cluster</strong> strategy.</p>
 <div class="paragraph">
 <p>In the future, more deployment strategies will be supported
 to offer users more customization to what they see deployed
-in their Kube cluster.</p>
+in their Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
 <p>Being open source, users can also write their own strategy!</p>
@@ -505,7 +501,7 @@ in their Kube cluster.</p>
 <h3 id="_specifying_a_strategy">Specifying a Strategy</h3>
 <div class="paragraph">
 <p>In the pgo client configuration file, there is a
-<strong>CLUSTER.STRATEGY</strong> setting.  The current value of the
+`CLUSTER.STRATEGY `setting.  The current value of the
 default strategy is <strong>1</strong>.  If you don&#8217;t set that value, the
 default strategy is assumed.  If you set that value to something
 not supported, the operator will log an error.</p>
@@ -520,11 +516,11 @@ to create new pods, services, etc.</p>
 <div class="paragraph">
 <p>When the operator is deployed, part of the deployment process
 is to copy the required strategy templates into a ConfigMap (<strong>operator-conf</strong>)
-that gets mounted into <strong>/operator-conf</strong> within the operator pod.</p>
+that gets mounted into <code>/operator-conf</code> within the operator pod.</p>
 </div>
 <div class="paragraph">
 <p>The directory structure of the strategy templates is as
-follows:</p>
+follows -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -553,7 +549,7 @@ are stored within the ConfigMap.</p>
 <h3 id="_default_cluster_deployment_strategy_1">Default Cluster Deployment Strategy (1)</h3>
 <div class="paragraph">
 <p>Using the default cluster strategy, a <strong>cluster</strong> when created by the operator will create the
-following on a Kube cluster:</p>
+following on a Kubernetes cluster -</p>
 </div>
 <div class="ulist">
 <ul>
@@ -569,7 +565,7 @@ following on a Kube cluster:</p>
 <li>
 <p>PVC for the <strong>primary</strong> will be created if not specified in configuration, this
 assumes you are using a non-shared volume technology (e.g. Amazon EBS),
-if the CLUSTER.PVC_NAME value is set in your configuration then a
+if the <code>CLUSTER.PVC_NAME</code> value is set in your configuration then a
 shared volume technology is assumed (e.g. HostPath or NFS), if a PVC
 is created for the primary, the naming convention is <strong>clustername-pvc</strong>
 where clustername is the name of your cluster.</p>
@@ -578,27 +574,30 @@ where clustername is the name of your cluster.</p>
 </div>
 <div class="paragraph">
 <p>If you want to add a Postgres replica to a cluster, you will
-<strong>scale</strong> the cluster, for each <strong>replica-count</strong>, a Deployment
-will be created that acts as a Postgres replica.</p>
+<strong>scale</strong> the cluster. For each <strong>replica-count</strong>, a Deployment
+will be created that acts as a PostgreSQL replica.</p>
 </div>
 <div class="paragraph">
-<p>This is very different than using say a StatefulSet to scale
-up Postgres.  Why would I do it this way?  Imagine a case
-where you want different parts of your Postgres cluster to
-use different storage configurations, I can do that by doing
-specific placement and deployments of each part of the cluster.</p>
+<p>This is very different than using a StatefulSet to scale
+up PostgreSQL.  Why would you do it this way? Imagine a case
+where you want different parts of your PostgreSQL cluster to
+use different storage configurations,. With this method, it can
+be done through using specific placement and deployments of each
+part of the cluster.</p>
 </div>
 <div class="paragraph">
-<p>This same concept applies to node selection for your Postgres
+<p>This same concept applies to node selection for the PostgreSQL
 cluster components.  The Operator will let you define precisely
-which node you want each Postgres component to be placed upon
+which node that the PostgreSQL component should be placed upon
 using node affinity rules.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_cluster_deletion">Cluster Deletion</h3>
 <div class="paragraph">
-<p>When you run the following:</p>
+<p>When you run the following, the cluster and its services will be
+deleted.  However, the data files and backup files will remain as
+well as the PVCs for this cluster.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -606,12 +605,7 @@ using node affinity rules.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The cluster and its services will be deleted.  However the data files
-and backup files will remain, same with the PVCs for this cluster, they
-all remain.</p>
-</div>
-<div class="paragraph">
-<p>However, to remove the data files from the PVC you can pass a flag:</p>
+<p>However, to remove the data files from the PVC you can pass the following flag -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -619,11 +613,12 @@ all remain.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>which will cause a workflow to be started to actually remove the
+<p>This causes a workflow to be started to remove the
 data files on the primary cluster deployment PVC.</p>
 </div>
 <div class="paragraph">
-<p>Also, if you pass a flag:</p>
+<p>The following flag will cause <strong>all</strong> of the backup files
+to be removed.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -631,10 +626,7 @@ data files on the primary cluster deployment PVC.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>it will cause <strong>all</strong> the backup files to be removed.</p>
-</div>
-<div class="paragraph">
-<p>The data removal workflow includes the following steps:</p>
+<p>The data removal workflow includes the following steps -</p>
 </div>
 <div class="ulist">
 <ul>
@@ -654,7 +646,7 @@ data files on the primary cluster deployment PVC.</p>
 </div>
 <div class="paragraph">
 <p>The files are removed by the <strong>rmdata</strong> container which essentially
-issues the following command to remove the files:</p>
+issues the following command to remove the files -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -668,7 +660,7 @@ issues the following command to remove the files:</p>
 <p>Starting in release 2.5, users and administrators can specify a
 custom set of Postgres configuration files be used when creating
 a new Postgres cluster.  The configuration files you can
-change include:</p>
+change include -</p>
 </div>
 <div class="ulist">
 <ul>
@@ -684,8 +676,8 @@ change include:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Different configurations for Postgres might be defined for
-the following:</p>
+<p>Different configurations for PostgreSQL might be defined for
+the following -</p>
 </div>
 <div class="ulist">
 <ul>
@@ -715,12 +707,12 @@ the following:</p>
 <p>If you create a <strong>configMap</strong> called <strong>pgo-custom-pg-config</strong> with any
 of the above files within it, new clusters will use those configuration
 files when setting up a new database instance.  You do <strong>NOT</strong> have to
-specify all of the configuration files, its up to your use case
-which ones to use.</p>
+specify all of the configuration files. It is entirely up to your use case
+to determine which to use.</p>
 </div>
 <div class="paragraph">
 <p>An example set of configuration files and a script to create the
-global configMap is found at:</p>
+global configMap is found at -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -729,55 +721,55 @@ global configMap is found at:</p>
 </div>
 <div class="paragraph">
 <p>If you run the <strong>create.sh</strong> script there, it will create the configMap
-that will include the Postgres configuration files within that directory.</p>
+that will include the PostgreSQL configuration files within that directory.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_config_files_purpose">Config Files Purpose</h4>
 <div class="paragraph">
-<p>The <strong>postgresql.conf</strong> file is the main Postgresql configuration file allowing you to define a wide variety of tuning parameters and features.</p>
+<p>The <strong>postgresql.conf</strong> file is the main Postgresql configuration file that allows
+the definition of a wide variety of tuning parameters and features.</p>
 </div>
 <div class="paragraph">
-<p>The <strong>pg_hba.conf</strong> file is the way Postgresql secures down client access.</p>
+<p>The <strong>pg_hba.conf</strong> file is the way Postgresql secures client access.</p>
 </div>
 <div class="paragraph">
 <p>The <strong>setup.sql</strong> file is a Crunchy Container Suite configuration
 file used to initially populate the database after the initial <strong>initdb</strong>
-is run when the database is first created.  You would make changes
-to this if you wanted to define what database objects always
-are created.</p>
+is run when the database is first created. Changes would be made
+to this if you wanted to define which database objects are created by
+default.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_granular_config_maps">Granular Config Maps</h4>
 <div class="paragraph">
-<p>So, lets say you want to use a different set of configuration
-files for different clusters instead of having just a single
-configuration (e.g. Global Config Map).  You can create
-your own set of ConfigMaps with their own set of Postgresql
-configuration files.  When creating new clusters, you
-can pass a <strong>--custom-config</strong> flag along with the name of your
-ConfigMap and that will be used for that specific cluster or
-set of clusters.</p>
+<p>Granular config maps can be defined if it is necessary to use
+a different set of configuration files for different clusters
+rather than having a single configuration (e.g. Global Config Map).
+A specific set of ConfigMaps with their own set of PostgreSQL
+configuration files can be created. When creating new clusters, a
+<code>--custom-config</code> flag can be passed along with the name of the
+ConfigMap which will be used for that specific cluster or set of
+clusters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_default">Default</h4>
+<h4 id="_defaults">Defaults</h4>
 <div class="paragraph">
-<p>Lets say you are happy with the default Postgresql configuration
-files that ship with the Crunchy Postgres container.  You don&#8217;t have
-to do anything essentially, just keep using the Operator as normal.
-Just be sure to not define a global configMap or pass the
-command line flag.</p>
+<p>If there&#8217;s no reason to change the default PostgreSQL configuration
+files that ship with the Crunchy Postgres container, there&#8217;s no
+requirement to. In this event, continue using the Operator as usual
+and avoid defining a global configMap.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_labeling">Labeling</h4>
 <div class="paragraph">
-<p>You will notice that when a custom configMap is used in cluster
-creation, the Operator labels the primary Postgres Deployment
-with a label that hase a <strong>custom-config</strong> label and a value
-of what configMap was used when creating the database.</p>
+<p>When a custom configMap is used in cluster creation, the Operator
+labels the primary Postgres Deployment with a label of
+<strong>custom-config</strong> and a value of what configMap was used when creating
+the database.</p>
 </div>
 <div class="paragraph">
 <p>Commands coming in future releases will take advantage of this
@@ -804,7 +796,7 @@ release of the <strong>crunchy-containers</strong> project and there will
 no longer be a requirement for the push gateway to be deployed.</p>
 </div>
 <div class="paragraph">
-<p>See <a href="https://github.com/CrunchyData/crunchy-containers/blob/master/docs/metrics.adoc" class="bare">https://github.com/CrunchyData/crunchy-containers/blob/master/docs/metrics.adoc</a> and <a href="https://github.com/CrunchyData/crunchy-containers/blob/master/docs/examples.adoc#metrics-collection" class="bare">https://github.com/CrunchyData/crunchy-containers/blob/master/docs/examples.adoc#metrics-collection</a> for more details on setting up the <strong>crunchy-metrics</strong> solution.</p>
+<p>See <a href="https://github.com/CrunchyData/crunchy-containers/blob/master/docs/examples.adoc#metrics-collection">the crunchy-containers Metrics example</a> for more details on setting up the <strong>crunchy-metrics</strong> solution.</p>
 </div>
 </div>
 </div>
