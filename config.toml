@@ -1,5 +1,5 @@
-#baseURL = "https://xenophenes.github.io/pgo-docs/"
-baseURL= "/"
+baseURL = "https://xenophenes.github.io/pgo-docs/"
+#baseURL= "/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
