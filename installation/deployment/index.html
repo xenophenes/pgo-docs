@@ -213,19 +213,9 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_verify_operator_status">Verify Operator Status</a></li>
-<li><a href="#_configure_strong_pgo_strong_client">Configure <strong>pgo</strong> Client</a>
-<ul class="sectlevel2">
-<li><a href="#_running_kubernetes_locally">Running Kubernetes Locally</a></li>
-</ul>
-</li>
-<li><a href="#_verify_strong_pgo_strong_client">Verify <strong>pgo</strong> Client</a></li>
-<li><a href="#_storage_configuration">Storage Configuration</a>
-<ul class="sectlevel2">
-<li><a href="#_nfs">NFS</a></li>
-<li><a href="#_dynamic">Dynamic</a></li>
-<li><a href="#_gke">GKE</a></li>
-</ul>
-</li>
+<li><a href="#_configure_strong_pgo_strong_client">Configure <strong>pgo</strong> Client</a></li>
+<li><a href="#_verify_pgo_client">Verify pgo Client</a></li>
+<li><a href="#_storage_configuration">Storage Configuration</a></li>
 <li><a href="#_next_steps">Next Steps</a></li>
 </ul>
 </div>
@@ -313,7 +303,7 @@ export CO_CMD=kubectl</pre>
 <h2 id="_configure_strong_pgo_strong_client">Configure <strong>pgo</strong> Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <strong>pgo</strong> command line client requires TLS for securing the connection to the operator&#8217;s REST API.  This configuration is performed as follows:</p>
+<p>The pgo command line client requires TLS for securing the connection to the operator&#8217;s REST API.  This configuration is performed as follows -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -323,7 +313,7 @@ export PGO_CLIENT_KEY=$COROOT/conf/apiserver/server.key</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <strong>pgo</strong> client uses Basic Authentication to authenticate to the operator REST API, for authentication, add the following <strong>.pgouser</strong> file to your $HOME:</p>
+<p>The pgo client uses Basic Authentication to authenticate to the operator REST API, for authentication, add the following <code>.pgouser</code> file to your $HOME -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -334,12 +324,24 @@ export PGO_CLIENT_KEY=$COROOT/conf/apiserver/server.key</pre>
 <p>The <strong>pgo</strong> client needs the URL to connect to the operator.</p>
 </div>
 <div class="paragraph">
-<p>Depending on your Kube environment this can be done the following ways:</p>
+<p>Depending on your Kubernetes environment this can be done the following ways.</p>
 </div>
+<div class="paragraph">
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fa fa-chevron-down' : 'fa fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fa fa-chevron-right"></i>
+        <span>
+        
+        
+        Running Kubernetes Locally
+        
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
 <div class="sect2">
 <h3 id="_running_kubernetes_locally">Running Kubernetes Locally</h3>
 <div class="paragraph">
-<p>If your local host is not set up to resolve Kube Service DNS names, you can specify the operator IP address as follows:</p>
+<p>If your local host is not set up to resolve Kubernetes Service DNS names, you can specify the operator IP address as follows -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -352,7 +354,7 @@ pgo version</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also define a bash alias like:</p>
+<p>It is also possible to define a bash alias such as -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -360,12 +362,29 @@ pgo version</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This alias will set the CO_APISERVER_URL IP address for you!</p>
+<p>This alias will set the <code>CO_APISERVER_URL</code> IP address for you.</p>
 </div>
-<div class="sect3">
-<h4 id="_running_kube_remotely">Running Kube Remotely</h4>
+</div>
+
+    </div>
+</div>
+</div>
 <div class="paragraph">
-<p>Set up a port-forward tunnel from your host to the Kube remote host, specifying the operator pod:</p>
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fa fa-chevron-down' : 'fa fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fa fa-chevron-right"></i>
+        <span>
+        
+        
+        Running Kubernetes Remotely
+        
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
+<div class="sect3">
+<h4 id="_running_kubernetes_remotely">Running Kubernetes Remotely</h4>
+<div class="paragraph">
+<p>Set up a port-forward tunnel from your host to the Kube remote host, specifying the operator pod -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -377,7 +396,7 @@ kubectl port-forward postgres-operator-56598999cd-tbg4w 8443:8443</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In another terminal:</p>
+<p>In another terminal -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -386,14 +405,17 @@ pgo version</pre>
 </div>
 </div>
 </div>
+
+    </div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_verify_strong_pgo_strong_client">Verify <strong>pgo</strong> Client</h2>
+<h2 id="_verify_pgo_client">Verify pgo Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At this point you should be able to connect to the operator as follows:</p>
+<p>At this point you should be able to connect to the operator as follows -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -403,7 +425,7 @@ apiserver version 2.6</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>pgo</strong> commands are documented on the <a href="https://xenophenes.github.io/pgo-docs/getting-started/">Getting Started</a> page.</p>
+<p>Operator commands are documented on the <a href="https://xenophenes.github.io/pgo-docs/getting-started/">Getting Started</a> page.</p>
 </div>
 </div>
 </div>
@@ -416,10 +438,22 @@ apiserver version 2.6</pre>
 <div class="paragraph">
 <p>The operator will work with HostPath, NFS, Dynamic, and GKE Storage.</p>
 </div>
+<div class="paragraph">
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fa fa-chevron-down' : 'fa fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fa fa-chevron-right"></i>
+        <span>
+        
+        
+        NFS
+        
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
 <div class="sect2">
 <h3 id="_nfs">NFS</h3>
 <div class="paragraph">
-<p>To configure the operator to use NFS for storage, a sample <strong>pgo.yaml.nfs</strong> file is provided.  Overlay the default <strong>pgo.yaml</strong> file with that file:</p>
+<p>To configure the operator to use NFS for storage, a sample <strong>pgo.yaml.nfs</strong> file is provided.  Overlay the default <code>pgo.yaml</code> file with that file -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -430,13 +464,29 @@ apiserver version 2.6</pre>
 <p>Edit the <strong>pgo.yaml</strong> file to specify the NFS GID that is set for the NFS volume mount you will be using, the default value assumed is <strong>nfsnobody</strong> as the GID (65534).  Update the value to meet your NFS security settings.</p>
 </div>
 <div class="paragraph">
-<p>There is currently no script available to create your NFS Persistent Volumes but you can typically modify the $COROOT/pv/create-pv.sh script to work with NFS.</p>
+<p>There is currently no script available to create your NFS Persistent Volumes but you can typically modify the <code>$COROOT/pv/create-pv.sh</code> script to work with NFS.</p>
 </div>
 </div>
+
+    </div>
+</div>
+</div>
+<div class="paragraph">
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fa fa-chevron-down' : 'fa fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fa fa-chevron-right"></i>
+        <span>
+        
+        
+        Dynamic
+        
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
 <div class="sect2">
 <h3 id="_dynamic">Dynamic</h3>
 <div class="paragraph">
-<p>To configure the operator to use Dynamic Storage classes for storage, a sample <strong>pgo.yaml.storageclass</strong> file is provided.  Overlay the default <strong>pgo.yaml</strong> file with that file:</p>
+<p>To configure the operator to use Dynamic Storage classes for storage, a sample <strong>pgo.yaml.storageclass</strong> file is provided.  Overlay the default <strong>pgo.yaml</strong> file with that file -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -450,6 +500,22 @@ apiserver version 2.6</pre>
 <p>Notice that the <strong>FsGroup</strong> setting is required for most block storage and is set to the value of <strong>26</strong> since the PostgreSQL container runs as UID <strong>26</strong>.</p>
 </div>
 </div>
+
+    </div>
+</div>
+</div>
+<div class="paragraph">
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fa fa-chevron-down' : 'fa fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fa fa-chevron-right"></i>
+        <span>
+        
+        
+        GKE
+        
+        </span>
+    </div>
+    <div class="expand-content" style="display: none;">
 <div class="sect2">
 <h3 id="_gke">GKE</h3>
 <div class="paragraph">
@@ -458,7 +524,7 @@ apiserver version 2.6</pre>
 <div class="sect3">
 <h4 id="_install_kubectl">Install Kubectl</h4>
 <div class="paragraph">
-<p>On your host you will be working from, install the kubectl command:</p>
+<p>On your host you will be working from, install the kubectl command -</p>
 </div>
 <div class="paragraph">
 <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" class="bare">https://kubernetes.io/docs/tasks/tools/install-kubectl/</a></p>
@@ -483,7 +549,7 @@ apiserver version 2.6</pre>
 <div class="sect3">
 <h4 id="_install_gcloud">Install GCloud</h4>
 <div class="paragraph">
-<p>To access the Kube cluster you need to install the gcloud utility:</p>
+<p>To access the Kubernetes cluster, install the gcloud utility -</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -504,6 +570,10 @@ gcloud container clusters get-credentials jeff-quickstart --zone us-central1-a -
 kubectl get storageclass</pre>
 </div>
 </div>
+</div>
+</div>
+
+    </div>
 </div>
 </div>
 </div>

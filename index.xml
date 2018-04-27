@@ -66,9 +66,10 @@
       <pubDate>Thu, 26 Apr 2018 15:26:40 -0700</pubDate>
       
       <guid>https://xenophenes.github.io/pgo-docs/installation/deployment/</guid>
-      <description>Table of Contents Verify Operator Status Configure pgo Client Running Kubernetes Locally   Verify pgo Client Storage Configuration NFS Dynamic GKE   Next Steps   v2.6, 2018-04-27
+      <description>Table of Contents Verify Operator Status Configure pgo Client Verify pgo Client Storage Configuration Next Steps   v2.6, 2018-04-27
  This document details verifying the installation of the PostgreSQL Operator is successful, in addition to detailing some different storage configurations that can be made.
- Verify Operator Status To verify that the operator is deployed and running, run the following:</description>
+ Verify Operator Status To verify that the operator is deployed and running, run the following:
+ kubectl get pod --selector=name=postgres-operator   You should see output similar to this:</description>
     </item>
     
     <item>
