@@ -1,0 +1,12 @@
+FROM registry.access.redhat.com/rhel7
+
+LABEL Release="2.6" Vendor="Crunchy Data Solutions" 
+
+RUN yum -y update && yum -y clean all
+
+
+VOLUME ["/pgdata"]
+
+USER 26
+
+CMD ["sh", "-c", "ls /pgdata/${BACKUP_ROOT}"]

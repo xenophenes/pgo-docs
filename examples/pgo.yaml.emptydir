@@ -1,0 +1,26 @@
+Namespace:  demo
+Cluster:
+  CCPImagePrefix:  crunchydata
+  CCPImageTag:  centos7-10.3-1.8.2
+  Port:  5432
+  User:  testuser
+  Database:  userdb
+  PasswordAgeDays:  60
+  PasswordLength:  8
+  Strategy:  1
+  Replicas:  0
+PrimaryStorage: storage1
+BackupStorage: storage1
+ReplicaStorage: storage1
+Storage:
+  storage1:
+    AccessMode:  ReadWriteMany
+    Size:  200M
+    StorageType:  emptydir
+Pgo:
+  Audit: false
+  Metrics: false
+  LSPVCTemplate:  /config/pgo.lspvc-template.json
+  LoadTemplate:  /config/pgo.load-template.json
+  COImagePrefix:  crunchydata
+  COImageTag:  centos7-2.6

@@ -1,0 +1,44 @@
+FROM registry.access.redhat.com/rhel7
+
+LABEL name="crunchydata/pgo-load" \
+        vendor="crunchy data" \
+      	PostgresVersion="9.6" \
+      	PostgresFullVersion="9.6.8" \
+        version="7.3" \
+        release="2.6" \
+        build-date="2018-03-30" \
+        url="https://crunchydata.com" \
+        summary="loads a CSV or json file into a database" \
+        description="executed by the operator, loads a CSV or json file." \
+        io.k8s.description="cvsload container" \
+        io.k8s.display-name="Crunchy pgo-load container" \
+        io.openshift.expose-services="" \
+        io.openshift.tags="crunchy,database"
+
+# Crunchy Postgres repo
+ADD conf/CRUNCHY-GPG-KEY.public  /
+ADD conf/crunchypg96.repo /etc/yum.repos.d/
+RUN rpm --import CRUNCHY-GPG-KEY.public
+
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
+
+RUN yum -y update &&  yum -y install epel-release \
+ && yum install -y \
+	gettext \
+	hostname \
+ 	nss_wrapper \
+	openssh-clients \
+	procps-ng \
+ && yum -y install postgresql96 \
+ && yum clean all -y
+
+RUN mkdir -p /opt/cpm/bin /opt/cpm/conf 
+ADD bin/pgo-load/ /opt/cpm/bin
+ADD conf/pgo-load/ /opt/cpm/conf
+RUN chown -R 26:26 /opt/cpm 
+
+VOLUME /pgdata
+
+USER 26
+
+CMD ["/opt/cpm/bin/start.sh"]
