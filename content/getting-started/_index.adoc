@@ -22,20 +22,20 @@ pgo version
 === pgo version
 
 To see what version of pgo client and postgres-operator you are
-running, use the following:
+running, use the following -
 ....
 pgo version
 ....
 
 === pgo create cluster
 
-To create a database, use the following:
+To create a database, use the following -
 ....
 pgo create cluster mycluster
 ....
 
 A more complex example is to create a *series* of clusters such
-as:
+as -
 ....
 pgo create cluster xraydb --series=3 --labels=project=xray --policies=xrayapp,rlspolicy
 ....
@@ -45,12 +45,12 @@ into their resulting cluster name, apply a user defined label to each
 cluster, and also apply user defined policies to each cluster after
 they are created.
 
-You can then view that database as:
+You can then view that database as -
 ....
 pgo show cluster mydatabase
 ....
 
-Also, if you like to see JSON formatted output, add the *-o json* flag:
+Also, if you like to see JSON formatted output, add the *-o json* flag -
 ....
 pgo show cluster mydatabase -o json
 ....
@@ -58,15 +58,15 @@ pgo show cluster mydatabase -o json
 The output will give you the current status of the database pod
 and the IP address of the database service.  If you have *postgresql*
 installed on your test system you can connect to the
-database using the service IP address:
+database using the service IP address -
 ....
 psql -h 10.105.121.12 -U postgres postgres
 ....
 
 More details are available on user management below, however, you may wish to take note
-that user credentials are created in the file $COROOT/deploy/create-secrets.sh upon
+that user credentials are created in the file `$COROOT/deploy/create-secrets.sh` upon
 deployment of the Operator. The following user accounts and passwords are created by
-default for connecting to the PostgreSQL clusters:
+default for connecting to the PostgreSQL clusters -
 
 *username*: postgres
 *password*: password
@@ -77,12 +77,12 @@ default for connecting to the PostgreSQL clusters:
 *username*: testuser
 *password*: password
 
-You can view *all* databases using the special keyword *all*:
+You can view *all* databases using the special keyword *all* -
 ....
 pgo show cluster all
 ....
 
-You can filter the results based on the Postgres Version:
+You can filter the results based on the Postgres Version -
 ....
 pgo show cluster all --version=9.6.2
 ....

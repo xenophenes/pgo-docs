@@ -65,25 +65,27 @@ You would normally add these into your *.bashrc* at this point to be used later 
 
 == Configure *pgo* Client
 
-The *pgo* command line client requires TLS for securing the connection to the operator's REST API.  This configuration is performed as follows:
+The pgo command line client requires TLS for securing the connection to the operator's REST API.  This configuration is performed as follows -
 ....
 export PGO_CA_CERT=$COROOT/conf/apiserver/server.crt
 export PGO_CLIENT_CERT=$COROOT/conf/apiserver/server.crt
 export PGO_CLIENT_KEY=$COROOT/conf/apiserver/server.key
 ....
 
-The *pgo* client uses Basic Authentication to authenticate to the operator REST API, for authentication, add the following *.pgouser* file to your $HOME:
+The pgo client uses Basic Authentication to authenticate to the operator REST API, for authentication, add the following `.pgouser` file to your $HOME -
 ....
 echo "username:password" > $HOME/.pgouser
 ....
 
 The *pgo* client needs the URL to connect to the operator.
 
-Depending on your Kube environment this can be done the following ways:
+Depending on your Kubernetes environment this can be done the following ways.
+
+{{%expand "Running Kubernetes Locally" %}}
 
 === Running Kubernetes Locally
 
-If your local host is not set up to resolve Kube Service DNS names, you can specify the operator IP address as follows:
+If your local host is not set up to resolve Kubernetes Service DNS names, you can specify the operator IP address as follows -
 ....
 kubectl get service postgres-operator
 NAME                TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
@@ -93,16 +95,20 @@ export CO_APISERVER_URL=https://10.109.184.8:8443
 pgo version
 ....
 
-You can also define a bash alias like:
+It is also possible to define a bash alias such as -
 ....
 alias setip='export CO_APISERVER_URL=https://`kubectl get service postgres-operator -o=jsonpath="{.spec.clusterIP}"`:8443'
 ....
 
-This alias will set the CO_APISERVER_URL IP address for you!
+This alias will set the `CO_APISERVER_URL` IP address for you.
 
-==== Running Kube Remotely
+{{% /expand%}}
 
-Set up a port-forward tunnel from your host to the Kube remote host, specifying the operator pod:
+{{%expand "Running Kubernetes Remotely" %}}
+
+==== Running Kubernetes Remotely
+
+Set up a port-forward tunnel from your host to the Kube remote host, specifying the operator pod -
 ....
 kubectl get pod --selector=name=postgres-operator
 NAME                                 READY     STATUS    RESTARTS   AGE
@@ -111,22 +117,24 @@ postgres-operator-56598999cd-tbg4w   2/2       Running   0          8m
 kubectl port-forward postgres-operator-56598999cd-tbg4w 8443:8443
 ....
 
-In another terminal:
+In another terminal -
 ....
 export CO_APISERVER_URL=https://127.0.0.1:8443
 pgo version
 ....
 
-== Verify *pgo* Client
+{{% /expand%}}
 
-At this point you should be able to connect to the operator as follows:
+== Verify pgo Client
+
+At this point you should be able to connect to the operator as follows -
 ....
 pgo version
 pgo client version 2.6
 apiserver version 2.6
 ....
 
-*pgo* commands are documented on the link:/getting-started/[Getting Started] page.
+Operator commands are documented on the link:/getting-started/[Getting Started] page.
 
 == Storage Configuration
 
@@ -134,20 +142,26 @@ Most users after they try out the operator will want to create a more customized
 
 The operator will work with HostPath, NFS, Dynamic, and GKE Storage.
 
+{{%expand "NFS" %}}
+
 === NFS
 
-To configure the operator to use NFS for storage, a sample *pgo.yaml.nfs* file is provided.  Overlay the default *pgo.yaml* file with that file:
+To configure the operator to use NFS for storage, a sample *pgo.yaml.nfs* file is provided.  Overlay the default `pgo.yaml` file with that file -
 ....
 cp $COROOT/examples/pgo.yaml.nfs $COROOT/conf/apiserver/pgo.yaml
 ....
 
 Edit the *pgo.yaml* file to specify the NFS GID that is set for the NFS volume mount you will be using, the default value assumed is *nfsnobody* as the GID (65534).  Update the value to meet your NFS security settings.
 
-There is currently no script available to create your NFS Persistent Volumes but you can typically modify the $COROOT/pv/create-pv.sh script to work with NFS.
+There is currently no script available to create your NFS Persistent Volumes but you can typically modify the `$COROOT/pv/create-pv.sh` script to work with NFS.
+
+{{% /expand%}}
+
+{{%expand "Dynamic" %}}
 
 === Dynamic
 
-To configure the operator to use Dynamic Storage classes for storage, a sample *pgo.yaml.storageclass* file is provided.  Overlay the default *pgo.yaml* file with that file:
+To configure the operator to use Dynamic Storage classes for storage, a sample *pgo.yaml.storageclass* file is provided.  Overlay the default *pgo.yaml* file with that file -
 ....
 cp $COROOT/examples/pgo.yaml.storageclass $COROOT/conf/apiserver/pgo.yaml
 ....
@@ -156,12 +170,17 @@ Edit the *pgo.yaml* file to specify the storage class you will be using, the def
 
 Notice that the *FsGroup* setting is required for most block storage and is set to the value of *26* since the PostgreSQL container runs as UID *26*.
 
+{{% /expand%}}
+
+{{%expand "GKE" %}}
+
 === GKE
 
 Some notes for setting up GKE for the Operator deployment.
 
 ==== Install Kubectl
-On your host you will be working from, install the kubectl command:
+
+On your host you will be working from, install the kubectl command -
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
@@ -174,7 +193,7 @@ By default a storage class called *standard* is created.
 
 ==== Install GCloud
 
-To access the Kube cluster you need to install the gcloud utility:
+To access the Kubernetes cluster, install the gcloud utility -
 
 ....
 https://cloud.google.com/sdk/downloads
@@ -191,6 +210,8 @@ gcloud container clusters get-credentials jeff-quickstart --zone us-central1-a -
 
 kubectl get storageclass
 ....
+
+{{% /expand%}}
 
 == Next Steps
 
